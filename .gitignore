@@ -8,16 +8,17 @@
 /tmp/*
 !/tmp/.keep
 yarn-error.log
+.byebug_history
 
 # Ignore config files.
 /config/database.yml
 
 # node
-./node_modules/*
+/node_modules/**/
 
 
 .DS_Store
 
 
 # gems
-./gems
+/gems/**/
