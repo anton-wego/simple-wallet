@@ -21,7 +21,42 @@ wallet = [
 users.each_with_index do |user,i|
   u = User.new user
   u.save
-  byebug
+
   Wallet.create wallet[i].merge({ user_id: u.id})
+end
+
+
+user_records = User.all
+
+# Depost
+deposits = [
+  { total: 10 },
+  { total: 100 },
+  { total: 1000 },
+]
+deposits.each_with_index do |dep, i|
+  Deposit.create_transaction( dep.merge({ user_id: user_records[i].id, target_id: user_records[i].wallet.id }))
+end
+
+#withdraw
+withdraw = [
+  { total: 5 },
+  { total: 10 },
+  { total: 240 },
+]
+withdraw.each_with_index do |wd, i|
+  Withdraw.create_transaction( wd.merge({ user_id: user_records[i].id, source_id: user_records[i].wallet.id }))
+end
+
+#transfer
+transfers = [
+  #send money
+  { user_id: user_records[0].id, source_id:  user_records[0].wallet.id, target_id: user_records[1].wallet.id, total: 1 },
+  { user_id: user_records[1].id, source_id:  user_records[1].wallet.id, target_id: user_records[2].wallet.id,total: 10 },
+  { user_id: user_records[2].id, source_id:  user_records[2].wallet.id, target_id: user_records[0].wallet.id,total: 150 },
+
+]
+transfers.each_with_index do |wd, i|
+  Transfer.create_transaction(wd)
 end
 
