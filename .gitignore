@@ -1,0 +1,23 @@
+# Ignore bundler config.
+/.bundle
+./.git
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp/*
+!/tmp/.keep
+yarn-error.log
+
+# Ignore config files.
+/config/database.yml
+
+# node
+./node_modules
+
+
+.DS_Store
+
+
+# gems
+./gems
