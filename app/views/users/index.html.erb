@@ -1,0 +1,27 @@
+<div style="margin-left: 10%;">
+  <table cellpadding="" cellspacing="0" border="0" class="table table-striped" style="border-collapse: unset">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Wallet name</th>
+        <th>Total</th>
+        <th>Transaction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td class="center"><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.wallet&.name %></td>
+        <td><%= user.wallet&.total %></td>
+        <td>
+          <%= link_to 'Deposit', '#' %> | <%= link_to 'Withdraw', '#' %> | <%= link_to 'Transfer', '#' %>
+
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
