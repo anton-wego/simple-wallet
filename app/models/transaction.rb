@@ -1,6 +1,7 @@
 class Transaction < ApplicationRecord
   belongs_to :source, class_name: 'Wallet' , optional: true
   belongs_to :target, class_name: 'Wallet', optional: true
+  belongs_to :user
 
   validates :total, presence: true
   validates :total, numericality: { greater_than: 0 }

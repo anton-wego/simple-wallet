@@ -3,3 +3,4 @@ class Withdraw < Transaction
 
   validate :check_ownership_and_total
 end
+

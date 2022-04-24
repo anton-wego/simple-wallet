@@ -1,0 +1,33 @@
+<style>
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  
+</style>
+
+<main class="form-signin">
+  <% flash.each do |type, msg| %>
+  <div class="alert alert-primary" role="alert">
+      <%= msg %>
+  </div>
+  <% end %>
+  <%= form_with model: @deposit do |form| %>
+    <h1 class="h3 mb-3 fw-normal">Deposit</h1>
+    </br>
+    <h2>Send to Wallet: <%= @target_wallet&.name %></h2>
+  
+    <div class="form-floating">
+      <%= form.hidden_field(:user_id) %>
+      <%= form.hidden_field(:target_id, { value: @deposit.target&.id || params[:target_id] }) %>
+      <%= form.text_field(:total, { class: 'form-control', value: @deposit.total || '10.0'}) %>
+      <%= form.label(:total, "Total :") %>
+    </div>
+
+    </br>
+    <%= submit_tag('Send Deposit', { class: "w-100 btn btn-lg btn-primary" }) %>
+    <%= link_to('Cancel', root_path, { class: "w-100 btn btn-lg" }) %>
+  <% end %>
+</main>
