@@ -1,0 +1,43 @@
+<style>
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+</style>
+
+<main class="form-signin">
+  <% flash.each do |type, msg| %>
+  <div class="alert alert-primary" role="alert">
+      <%= msg %>
+  </div>
+  <% end %>
+  <% @tf.errors.full_messages.each do |x| %>
+  <div class="alert alert-secondary" role="alert">
+    <%= x %>
+  </div>
+  <% end %>
+  <%= form_with model: @tf do |form| %>
+    <h1 class="h3 mb-3 fw-normal">Transfer</h1>
+    </br>
+    <h2>From Wallet: <%= @source_wallet&.name %></h2>
+    </br>
+    <h3>Balance: <%= @source_wallet&.total %></h3>
+
+    <div class="form-floating">
+      <%= form.select(:target_id, options_for_select(@wallets.map{|x| [x.name, x.id]}, 2), {}, { class: 'form-control' }) %>
+      <%= form.label(:target_id, "To wallet :") %>
+    </div>
+    <div class="form-floating">
+      <%= form.hidden_field(:user_id) %>
+      <%= form.hidden_field(:source_id, { value: @tf.source&.id || params[:source_id] }) %>
+      <%= form.text_field(:total, { class: 'form-control', value: @tf.total || '10.0'}) %>
+      <%= form.label(:total, "Total :") %>
+    </div>
+
+    </br>
+    <%= submit_tag('Send Deposit', { class: "w-100 btn btn-lg btn-primary" }) %>
+    <%= link_to('Cancel', root_path, { class: "w-100 btn btn-lg" }) %>
+  <% end %>
+</main>

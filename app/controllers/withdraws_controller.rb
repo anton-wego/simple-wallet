@@ -30,7 +30,7 @@ class WithdrawsController < ApplicationController
   def check_source_wallet
     @source_wallet = Wallet.find_by(id: params[:source_id])
     unless @source_wallet.present?
-      redirect_to root_path, notice: "Source walet not found"
+      redirect_to root_path, notice: "Source wallet not found"
     end
   end
 end

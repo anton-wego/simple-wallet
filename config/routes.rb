@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :deposits, only: [:new, :create]
   resources :withdraws, only: [:new, :create]
+  resources :transfers, only: [:new, :create]
 
   root "users#index"
 end

@@ -30,7 +30,7 @@ class DepositsController < ApplicationController
   def check_target_wallet
     @target_wallet = Wallet.find_by(id: params[:target_id])
     unless @target_wallet.present?
-      redirect_to root_path, notice: "Target walet not found"
+      redirect_to root_path, notice: "Target wallet not found"
     end
   end
 end
