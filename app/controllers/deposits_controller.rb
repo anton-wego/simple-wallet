@@ -15,6 +15,7 @@ class DepositsController < ApplicationController
       Deposit.create_transaction permit_params
       redirect_to root_path, notice: "Deposit to wallet : #{@deposit.target.name} success"
     else
+      @target_wallet = @deposit.target
       flash.now[:alert] = "Deposit to wallet #{@deposit.target.name} failed"
       render :new
     end

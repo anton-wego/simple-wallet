@@ -5,13 +5,17 @@
     padding: 15px;
     margin: auto;
   }
-  
 </style>
 
 <main class="form-signin">
   <% flash.each do |type, msg| %>
   <div class="alert alert-primary" role="alert">
       <%= msg %>
+  </div>
+  <% end %>
+  <% @deposit.errors.full_messages.each do |x| %>
+  <div class="alert alert-secondary" role="alert">
+    <%= x %>
   </div>
   <% end %>
   <%= form_with model: @deposit do |form| %>

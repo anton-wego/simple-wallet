@@ -1,2 +1,2 @@
-module DepositHelper
+module DepositsHelper
 end
