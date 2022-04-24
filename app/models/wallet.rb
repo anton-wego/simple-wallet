@@ -1,5 +1,6 @@
-class Wallet < ApplicationRecord
+# frozen_string_literal: true
 
+class Wallet < ApplicationRecord
   def calculation_total
     transaction do
       deposit_total = Deposit.where(target_id: id).sum(:total)
@@ -11,9 +12,7 @@ class Wallet < ApplicationRecord
       # transfer out
       transfer_out = Transfer.where(source_id: id).sum(:total)
 
-      update( total: (deposit_total - wd_total) + (transfer_in -transfer_out))
+      update(total: (deposit_total - wd_total) + (transfer_in - transfer_out))
     end
   end
 end
-
-
