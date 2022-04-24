@@ -22,7 +22,7 @@
         <td><%= user.wallet&.name %></td>
         <td><%= user.wallet&.total %></td>
         <td>
-          <%= link_to 'Deposit', new_deposit_path({ target_id: user.wallet&.id }) %> | <%= link_to 'Withdraw', '#' %> | <%= link_to 'Transfer', '#' %>
+          <%= link_to 'Deposit', new_deposit_path({ target_id: user.wallet&.id }) %> | <%= link_to 'Withdraw', new_withdraw_path({ source_id: user.wallet&.id }) %> | <%= link_to 'Transfer', '#' %>
 
         </td>
       </tr>

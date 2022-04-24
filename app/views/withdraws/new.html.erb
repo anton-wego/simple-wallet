@@ -1,0 +1,37 @@
+<style>
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+</style>
+
+<main class="form-signin">
+  <% flash.each do |type, msg| %>
+  <div class="alert alert-primary" role="alert">
+      <%= msg %>
+  </div>
+  <% end %>
+  <% @wd.errors.full_messages.each do |x| %>
+  <div class="alert alert-secondary" role="alert">
+    <%= x %>
+  </div>
+  <% end %>
+  <%= form_with model: @wd do |form| %>
+    <h1 class="h3 mb-3 fw-normal">Withdraw</h1>
+    </br>
+    <h2>Send to Wallet: <%= @source_wallet&.name %></h2>
+  
+    <div class="form-floating">
+      <%= form.hidden_field(:user_id) %>
+      <%= form.hidden_field(:source_id, { value: @wd.source&.id || params[:source_id] }) %>
+      <%= form.text_field(:total, { class: 'form-control', value: @wd.total || '10.0'}) %>
+      <%= form.label(:total, "Total :") %>
+    </div>
+
+    </br>
+    <%= submit_tag('Send Deposit', { class: "w-100 btn btn-lg btn-primary" }) %>
+    <%= link_to('Cancel', root_path, { class: "w-100 btn btn-lg" }) %>
+  <% end %>
+</main>

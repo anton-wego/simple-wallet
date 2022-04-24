@@ -34,7 +34,7 @@ class Transaction < ApplicationRecord
 
   def check_ownership_and_total
     wallet_total = Wallet.select('total, user_id').find_by(id: source_id)
-    if wallet_total.present? && total > wallet_total&.total.to_f
+    if wallet_total.present? && total.to_f > wallet_total&.total.to_f
       errors.add(:total, "can't be greater than total of wallet")
     end
 
